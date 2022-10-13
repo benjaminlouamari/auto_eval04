@@ -1,0 +1,104 @@
+package auto_eval;
+
+public class Auto_eval_04 {
+	
+	/**
+	 * Permet de créer un tableau de taille aléatoire entre 10 et 20.
+	 * @return => tableau de nombres entiers.
+	 */
+	public static int[] arrayGenerator() {
+		
+		int randLenght;
+		
+		do {
+			randLenght = (int) (Math.random() * 11) + 10;
+		} while(randLenght % 2 != 0);
+		
+		int[] randArray = new int[randLenght];
+		
+		for(int i = 0; i < randArray.length; i++) {
+			randArray[i] = (int) (Math.random() * 20);
+		}
+		
+		return randArray;
+	}
+	
+	/**	
+	 * Permet d'afficher un tableau dans la console.
+	 * @param ARRAY => tableau que l'on veut afficher.
+	 */
+	public static void arrayDisplay(int[] ARRAY) {
+		
+		System.out.print("[");
+		for(int x : ARRAY) {
+			System.out.print(x + " ");
+		}
+		System.out.print("]\n");
+		
+	}
+	
+	/**
+	 * Permet de trier un tableau d'ordre croissant.
+	 * @param ARRAY => tableau que l'on veut trier.
+	 */
+	public static void arraySorter(int [] ARRAY) {
+		
+		int temp;
+		
+		for(int i = 0; i < ARRAY.length - 1; i++) {
+			
+			for(int y = 0; y < ARRAY.length - 1; y++) {
+				
+				if(ARRAY[y+1] < ARRAY[y]) {
+					temp = ARRAY[y];
+					ARRAY[y] = ARRAY[y+1];
+					ARRAY[y+1] = temp;
+				}
+			}
+		}
+		
+	}
+	
+	/**
+	 * Permet de diviser un tableau en deux tableau de taille égale.
+	 * @param ARRAY => tableau que l'on veut diviser.
+	 * @return => un tableau à deux dimension.
+	 */
+	public static int[][] arrayDivide(int [] ARRAY) {
+		
+		int[][] finalArray = {new int[ARRAY.length/2], new int[ARRAY.length/2]};
+		int dimension = 0;
+		int count = 0;
+		
+		for(int i = 0; i < ARRAY.length; i++) {
+			if(i == ARRAY.length/2) {
+				dimension = 1;
+				count = 0;
+			}
+			finalArray[dimension][count] = ARRAY[i];
+			count++;
+		}
+		
+		arraySorter(finalArray[0]);
+		arraySorter(finalArray[1]);
+		
+		return finalArray;
+	}
+
+	
+	public static void main(String[] args) {
+		
+		//Crée notre premier tableau dans un premier temps.
+		int[] myArray = arrayGenerator();
+		arrayDisplay(myArray);
+		
+		//Divise notre tableau en deux tableau de taille égale (le tout dans un tableau à deux dimension).
+		int[][] dividedArray = arrayDivide(myArray);
+		arrayDisplay(dividedArray[0]);
+		arrayDisplay(dividedArray[1]);
+		
+	}
+	
+	
+
+}
