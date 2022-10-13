@@ -1,0 +1,32 @@
+package auto_eval;
+
+public class Auto_eval_04 {
+
+	public static void main(String[] args) {
+		
+		int[] ARRAY = {1, 6, 4, 8, 0, 34, 56};
+		int temp;
+		
+		for(int i = 0; i < ARRAY.length - 1; i++) {
+			
+			for(int y = 0; y < ARRAY.length - 1; y++) {
+				
+				if(ARRAY[y+1] < ARRAY[y]) {
+					temp = ARRAY[y];
+					ARRAY[y] = ARRAY[y+1];
+					ARRAY[y+1] = temp;
+				}
+				
+			}
+			
+		}
+		
+		System.out.print("[");
+		for(int x : ARRAY) {
+			System.out.print(x + " ");
+		}
+		System.out.print("]");
+		
+	}
+
+}
